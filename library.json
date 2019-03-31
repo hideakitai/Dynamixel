@@ -1,0 +1,20 @@
+{
+    "name": "Dynamixel",
+    "keywords": "dynamixel,motor,servo,serial,rs485",
+    "description": "Arduino library for Dynamixel",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/hideakitai/Dynamixel.git"
+    },
+    "authors":
+    {
+        "name": "Hideaki Tai",
+        "url": "https://github.com/hideakitai",
+        "maintainer": true
+    },
+    "version": "0.1.0",
+    "license": "MIT",
+    "frameworks": "arduino",
+    "platforms": "*"
+}
