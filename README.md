@@ -41,6 +41,8 @@ This library currently supports only following boards.
 ## Usage
 
 ``` C++
+#include <Dynamixel.h>
+
 #define DYNAMIXEL_SERIAL Serial2 // change as you want
 
 const uint8_t TARGET_ID = 1;
