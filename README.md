@@ -40,7 +40,7 @@ This library currently supports only following boards.
 
 ## Usage
 
-```
+``` C++
 #define DYNAMIXEL_SERIAL Serial2 // change as you want
 
 const uint8_t TARGET_ID = 1;
@@ -95,7 +95,7 @@ For more examples, see `examples` folder.
 
 ## APIs
 
-```
+``` C++
 // initialize
 template <Model> void addModel(uint8_t id)
 void attach(Stream& s, size_t baud)
