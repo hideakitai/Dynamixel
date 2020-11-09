@@ -64,13 +64,15 @@ public:
         if (error & ERRBIT_CHECKSUM) return "[RxPacketError] Checksum error!";
         if (error & ERRBIT_OVERLOAD) return "[RxPacketError] Overload error!";
         if (error & ERRBIT_INSTRUCTION) return "[RxPacketError] Instruction code error!";
+#else
+        (void)error;
 #endif
         return "";
     }
 
     int txPacket(uint8_t *txpacket) {
         uint8_t checksum = 0;
-        uint8_t total_packet_length = txpacket[PKT_LENGTH] + 4;  // 4: HEADER0 HEADER1 ID LENGTH
+        uint16_t total_packet_length = txpacket[PKT_LENGTH] + 4;  // 4: HEADER0 HEADER1 ID LENGTH
         uint8_t written_packet_length = 0;
 
         // check max packet length
@@ -97,8 +99,8 @@ public:
     int rxPacket(uint8_t *rxpacket) {
         int result = COMM_TX_FAIL;
         uint8_t checksum = 0;
-        uint8_t rx_length = 0;
-        uint8_t wait_length = 6;  // minimum length (HEADER0 HEADER1 ID LENGTH ERROR CHKSUM)
+        uint16_t rx_length = 0;
+        uint16_t wait_length = 6;  // minimum length (HEADER0 HEADER1 ID LENGTH ERROR CHKSUM)
 
         while (true) {
             rx_length += port->readPort(&rxpacket[rx_length], wait_length - rx_length);
@@ -125,7 +127,7 @@ public:
                     }
 
                     // re-calculate the exact length of the rx packet
-                    if (wait_length != rxpacket[PKT_LENGTH] + PKT_LENGTH + 1) {
+                    if (wait_length != (uint16_t)(rxpacket[PKT_LENGTH] + PKT_LENGTH + 1)) {
                         wait_length = rxpacket[PKT_LENGTH] + PKT_LENGTH + 1;
                         continue;
                     }
@@ -210,6 +212,8 @@ public:
     }
 
     int ping(uint8_t id, uint16_t *model_number, uint8_t *error = 0) {
+        (void)model_number;
+
         int result = COMM_TX_FAIL;
 
         uint8_t txpacket[6] = {0};
@@ -229,6 +233,7 @@ public:
     }
 
     int broadcastPing(Vec<uint8_t> &id_list) {
+        (void)id_list;
         return COMM_NOT_AVAILABLE;
     }
 
@@ -241,14 +246,19 @@ public:
     }
 
     int reboot(uint8_t id, uint8_t *error = 0) {
+        (void)id;
+        (void)error;
         return COMM_NOT_AVAILABLE;
     }
 
     int clearMultiTurn(uint8_t id, uint8_t *error = 0) {
+        (void)id;
+        (void)error;
         return COMM_NOT_AVAILABLE;
     }
 
     int factoryReset(uint8_t id, uint8_t option, uint8_t *error = 0) {
+        (void)option;
         uint8_t txpacket[6] = {0};
         uint8_t rxpacket[6] = {0};
         txpacket[PKT_ID] = id;

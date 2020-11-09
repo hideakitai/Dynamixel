@@ -89,7 +89,7 @@ private:
                 return;
 
             param_[idx++] = id;
-            for (int c = 0; c < data_length_; c++)
+            for (uint16_t c = 0; c < data_length_; c++)
                 param_[idx++] = (data_list_[id])[c];
         }
     }
@@ -151,7 +151,7 @@ public:
 
         id_list_.push_back(id);
         data_list_[id] = new uint8_t[data_length_];
-        for (int c = 0; c < data_length_; c++)
+        for (uint16_t c = 0; c < data_length_; c++)
             data_list_[id][c] = data[c];
 
         is_param_changed_ = true;
@@ -193,7 +193,7 @@ public:
 
         delete[] data_list_[id];
         data_list_[id] = new uint8_t[data_length_];
-        for (int c = 0; c < data_length_; c++)
+        for (uint16_t c = 0; c < data_length_; c++)
             data_list_[id][c] = data[c];
 
         is_param_changed_ = true;
@@ -245,6 +245,7 @@ public:
     /// @return communication results which come from Protocol2PacketHandler::txRxPacket()
     ////////////////////////////////////////////////////////////////////////////////
     int syncWriteTxOnly(PortHandler *port, uint16_t start_address, uint16_t data_length, uint8_t *param, uint16_t param_length) {
+        (void)port;
         int result = COMM_TX_FAIL;
 
         uint8_t *txpacket = (uint8_t *)malloc(param_length + 14 + (param_length / 3));

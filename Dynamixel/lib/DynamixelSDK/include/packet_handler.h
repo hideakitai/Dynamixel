@@ -104,6 +104,7 @@ public:
                 return "";
         }
 #else
+        (void)result;
         return "";
 #endif
     }

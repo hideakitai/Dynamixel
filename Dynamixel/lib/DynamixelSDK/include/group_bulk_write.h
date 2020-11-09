@@ -96,7 +96,7 @@ private:
             param_[idx++] = DXL_HIBYTE(address_list_[id]);
             param_[idx++] = DXL_LOBYTE(length_list_[id]);
             param_[idx++] = DXL_HIBYTE(length_list_[id]);
-            for (int c = 0; c < length_list_[id]; c++)
+            for (uint16_t c = 0; c < length_list_[id]; c++)
                 param_[idx++] = (data_list_[id])[c];
         }
     }
@@ -153,7 +153,7 @@ public:
         address_list_[id] = start_address;
         length_list_[id] = data_length;
         data_list_[id] = new uint8_t[data_length];
-        for (int c = 0; c < data_length; c++)
+        for (uint16_t c = 0; c < data_length; c++)
             data_list_[id][c] = data[c];
 
         is_param_changed_ = true;
@@ -201,7 +201,7 @@ public:
         length_list_[id] = data_length;
         delete[] data_list_[id];
         data_list_[id] = new uint8_t[data_length];
-        for (int c = 0; c < data_length; c++)
+        for (uint16_t c = 0; c < data_length; c++)
             data_list_[id][c] = data[c];
 
         is_param_changed_ = true;
@@ -248,6 +248,7 @@ public:
     /// @return communication results which come from Protocol2PacketHandler::txRxPacket()
     ////////////////////////////////////////////////////////////////////////////////
     int bulkWriteTxOnly(PortHandler *port, uint8_t *param, uint16_t param_length) {
+        (void)port;
         int result = COMM_TX_FAIL;
 
         uint8_t *txpacket = (uint8_t *)malloc(param_length + 10 + (param_length / 3));

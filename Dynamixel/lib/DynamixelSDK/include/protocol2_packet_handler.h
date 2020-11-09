@@ -205,6 +205,7 @@ public:
                 return "[RxPacketError] Unknown error code!";
         }
 #else
+        (void)error;
         return "";
 #endif
     }
