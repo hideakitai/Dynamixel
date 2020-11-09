@@ -18,12 +18,8 @@ Please feel free to report issues and PRs.
 
 ### Supported & Tested Platforms
 
-This library currently supports only following boards.
+This library supports almost all Arduino boards.
 
-- ESP32
-- ESP8266
-- Teensy 3.x (PlatformIO)
-- Teensy 3.x (Arduino IDE : You need to change compile option)
 
 ### Supported Models
 
@@ -72,7 +68,7 @@ void setup()
     dxl.minPositionLimit(TARGET_ID, 1400);
     dxl.maxPositionLimit(TARGET_ID, 1900);
     dxl_goal_position[0] = dxl.minPositionLimit(TARGET_ID); // get min pos limit
-    dxl_goal_position[1] = dxl.maxPositionLimit(TARGET_ID); ./ get max pos limit
+    dxl_goal_position[1] = dxl.maxPositionLimit(TARGET_ID); // get max pos limit
     dxl.velocityLimit(TARGET_ID, 30000);
 
     dxl.torqueEnable(TARGET_ID, true);
@@ -214,34 +210,6 @@ bool goalPosition(uint8_t id, int32_t x)
 - SYNC READ/WRITE
 - BULK READ/WRITE
 
-## APPENDIX: Instruction for Teensy + Arduino IDE
-
-*This instruction does not guarantee anything, please do it at your own risk*
-
-To use this library with Teensy + Arduino IDE, you should enable STL.
-By default, STL is disabled when you use Teensy w/ Arduino IDE.
-To enable STL, please add `-lstdc++` to build flags in `boards.txt`.
-(Please do that everytime if you update Teensyduino version)
-
-Default location of `boards.txt` in Windows is:
-- Windows : `C:\Program Files (x86)\Arduino\hardware\teensy\avr\boards.txt`
-- macOS   : `Arduino.app/Contents/Java/hardware/teensy/avr/boards.txt`
-
-In paticular, please change these lines
-
-```
-teensy36.build.flags.libs=-larm_cortexM4lf_math -lm
-teensy35.build.flags.libs=-larm_cortexM4lf_math -lm
-teensy31.build.flags.libs=-larm_cortexM4l_math -lm
-```
-
-to
-
-```
-teensy36.build.flags.libs=-larm_cortexM4lf_math -lm -lstdc++
-teensy35.build.flags.libs=-larm_cortexM4lf_math -lm -lstdc++
-teensy31.build.flags.libs=-larm_cortexM4l_math -lm -lstdc++
-```
 
 ## License
 
