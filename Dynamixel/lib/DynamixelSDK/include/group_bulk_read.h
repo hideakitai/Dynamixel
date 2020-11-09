@@ -35,30 +35,30 @@ namespace dynamixel {
 /// @brief The class for reading multiple Dynamixel data from different addresses with different lengths at once
 ////////////////////////////////////////////////////////////////////////////////
 class GroupBulkRead {
-    static const size_t TXPACKET_MAX_LEN = 1 * 1024;
-    static const size_t RXPACKET_MAX_LEN = 1 * 1024;
+    static constexpr size_t TXPACKET_MAX_LEN = 1 * 1024;
+    static constexpr size_t RXPACKET_MAX_LEN = 1 * 1024;
 
     ///////////////// for Protocol 2.0 Packet /////////////////
-    static const uint8_t PKT_HEADER0 = 0;
-    static const uint8_t PKT_HEADER1 = 1;
-    static const uint8_t PKT_HEADER2 = 2;
-    static const uint8_t PKT_RESERVED = 3;
-    static const uint8_t PKT_ID = 4;
-    static const uint8_t PKT_LENGTH_L = 5;
-    static const uint8_t PKT_LENGTH_H = 6;
-    static const uint8_t PKT_INSTRUCTION = 7;
-    static const uint8_t PKT_ERROR = 8;
-    static const uint8_t PKT_PARAMETER0 = 8;
+    static constexpr uint8_t PKT_HEADER0 = 0;
+    static constexpr uint8_t PKT_HEADER1 = 1;
+    static constexpr uint8_t PKT_HEADER2 = 2;
+    static constexpr uint8_t PKT_RESERVED = 3;
+    static constexpr uint8_t PKT_ID = 4;
+    static constexpr uint8_t PKT_LENGTH_L = 5;
+    static constexpr uint8_t PKT_LENGTH_H = 6;
+    static constexpr uint8_t PKT_INSTRUCTION = 7;
+    static constexpr uint8_t PKT_ERROR = 8;
+    static constexpr uint8_t PKT_PARAMETER0 = 8;
 
     ///////////////// Protocol 2.0 Error bit /////////////////
-    static const uint8_t ERRNUM_RESULT_FAIL = 1;  // Failed to process the instruction packet.
-    static const uint8_t ERRNUM_INSTRUCTION = 2;  // Instruction error
-    static const uint8_t ERRNUM_CRC = 3;          // CRC check error
-    static const uint8_t ERRNUM_DATA_RANGE = 4;   // Data range error
-    static const uint8_t ERRNUM_DATA_LENGTH = 5;  // Data length error
-    static const uint8_t ERRNUM_DATA_LIMIT = 6;   // Data limit error
-    static const uint8_t ERRNUM_ACCESS = 7;       // Access error
-    static const uint8_t ERRBIT_ALERT = 128;      //When the device has a problem, this bit is set to 1. Check "Device Status Check" value.
+    static constexpr uint8_t ERRNUM_RESULT_FAIL = 1;  // Failed to process the instruction packet.
+    static constexpr uint8_t ERRNUM_INSTRUCTION = 2;  // Instruction error
+    static constexpr uint8_t ERRNUM_CRC = 3;          // CRC check error
+    static constexpr uint8_t ERRNUM_DATA_RANGE = 4;   // Data range error
+    static constexpr uint8_t ERRNUM_DATA_LENGTH = 5;  // Data length error
+    static constexpr uint8_t ERRNUM_DATA_LIMIT = 6;   // Data limit error
+    static constexpr uint8_t ERRNUM_ACCESS = 7;       // Access error
+    static constexpr uint8_t ERRBIT_ALERT = 128;      //When the device has a problem, this bit is set to 1. Check "Device Status Check" value.
 private:
     PortHandler *port_;
     PacketHandler *ph_;

@@ -146,7 +146,7 @@ private:
     ControlTableOfModel(const ControlTableOfModel&) = delete;
     ControlTableOfModel& operator=(const ControlTableOfModel&) = delete;
     ControlTableOfModel() {
-        Serial.println("OTHER series Control Table");
+        Serial.println(F("OTHER series Control Table"));
         ct = Map<Reg, RegInfo>{
             // only for Protocol 1.0
             // EEPROM
@@ -200,7 +200,7 @@ private:
     ControlTableOfModel(const ControlTableOfModel&) = delete;
     ControlTableOfModel& operator=(const ControlTableOfModel&) = delete;
     ControlTableOfModel() {
-        Serial.println("PRO series Control Table");
+        Serial.println(F("PRO series Control Table"));
         ct = Map<Reg, RegInfo>{
             {Reg::MODEL_NUMBER, {0, 2}},
             {Reg::MODEL_INFORMATION, {2, 4}},
@@ -266,7 +266,7 @@ private:
     ControlTableOfModel(const ControlTableOfModel&) = delete;
     ControlTableOfModel& operator=(const ControlTableOfModel&) = delete;
     ControlTableOfModel() {
-        Serial.println("X series Control Table");
+        Serial.println(F("X series Control Table"));
         ct = Map<Reg, RegInfo>{
             // EEPROM
             {Reg::MODEL_NUMBER, {0, 2}},
@@ -341,7 +341,7 @@ private:
     ControlTableOfModel(const ControlTableOfModel&) = delete;
     ControlTableOfModel& operator=(const ControlTableOfModel&) = delete;
     ControlTableOfModel() {
-        Serial.println("MX series Control Table");
+        Serial.println(F("MX series Control Table"));
         ct = Map<Reg, RegInfo>{
             // only for Protocol 2.0
             // EEPROM
@@ -408,12 +408,16 @@ private:
     }
 };
 
-enum class SatusReturnLevel { EXC_PING,
-                              EXC_PING_READ,
-                              ALL };
-enum class ResetMode { ALL = 0xFF,
-                       EXC_ID = 0x01,
-                       EXC_ID_BAUD = 0x02 };
+enum class SatusReturnLevel {
+    EXC_PING,
+    EXC_PING_READ,
+    ALL
+};
+enum class ResetMode {
+    ALL = 0xFF,
+    EXC_ID = 0x01,
+    EXC_ID_BAUD = 0x02
+};
 
 }  // namespace dynamixel
 }  // namespace arduino

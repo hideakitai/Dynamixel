@@ -56,6 +56,7 @@ public:
     float getProtocolVersion() { return 1.0; }
 
     const char *getRxPacketError(uint8_t error) {
+#ifndef __AVR__
         if (error & ERRBIT_VOLTAGE) return "[RxPacketError] Input voltage error!";
         if (error & ERRBIT_ANGLE) return "[RxPacketError] Angle limit error!";
         if (error & ERRBIT_OVERHEAT) return "[RxPacketError] Overheat error!";
@@ -63,6 +64,7 @@ public:
         if (error & ERRBIT_CHECKSUM) return "[RxPacketError] Checksum error!";
         if (error & ERRBIT_OVERLOAD) return "[RxPacketError] Overload error!";
         if (error & ERRBIT_INSTRUCTION) return "[RxPacketError] Instruction code error!";
+#endif
         return "";
     }
 

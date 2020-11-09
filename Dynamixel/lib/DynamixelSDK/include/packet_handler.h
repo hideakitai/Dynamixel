@@ -80,6 +80,7 @@ public:
     virtual float getProtocolVersion() = 0;
 
     const char *getTxRxResult(int result) {
+#ifndef __AVR__
         switch (result) {
             case COMM_SUCCESS:
                 return "[TxRxResult] Communication success.";
@@ -102,6 +103,9 @@ public:
             default:
                 return "";
         }
+#else
+        return "";
+#endif
     }
 
     virtual const char *getRxPacketError(uint8_t error) = 0;
