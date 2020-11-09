@@ -23,7 +23,6 @@
 #ifndef DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_DYNAMIXELSDK_H_
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_DYNAMIXELSDK_H_
 
-
 #include "group_bulk_read.h"
 #include "group_bulk_write.h"
 #include "group_sync_read.h"
@@ -32,6 +31,5 @@
 #include "port_handler_arduino.h"
 #include "protocol1_packet_handler.h"
 #include "protocol2_packet_handler.h"
-
 
 #endif /* DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_DYNAMIXELSDK_H_ */
