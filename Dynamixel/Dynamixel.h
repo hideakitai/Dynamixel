@@ -3,8 +3,8 @@
 #define ARDUINO_DYNAMIXEL_IMPL_H
 
 #include "lib/DynamixelSDK/include/dynamixel_sdk.h"
+#include "util/ArxSmartPtr/ArxSmartPtr.h"
 #include "DynamixelControlTable.h"
-#include <memory>
 
 namespace arduino {
 namespace dynamixel {
@@ -34,11 +34,11 @@ namespace dynamixel {
             uint8_t error;
             uint16_t model;
         };
-        std::map<uint8_t, Info> info;
+        Map<uint8_t, Info> info;
 
     public:
 
-        using Models = std::vector<uint8_t>;
+        using Models = Vec<uint8_t>;
 
         // TODO: do not use new, make instance inside
         Dynamixel(uint8_t pin_rts_enable, ProtocolVersion ver = ProtocolVersion::V2)

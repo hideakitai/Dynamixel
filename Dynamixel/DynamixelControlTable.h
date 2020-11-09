@@ -2,10 +2,18 @@
 #ifndef DYNAMIXEL_CONTROL_TABLE_H
 #define DYNAMIXEL_CONTROL_TABLE_H
 
-#include <memory>
+#include "util/ArxSmartPtr/ArxSmartPtr.h"
 
 namespace arduino {
 namespace dynamixel {
+
+#if ARX_HAVE_LIBSTDCPLUSPLUS >= 201103L // Have libstdc++11
+    template <typename T> using Vec = std::vector<T>;
+    template <typename T, typename U> using Map = std::map<T, U>;
+#else // Do not have libstdc++11
+    template <typename T> using Vec = arx::vector<T>;
+    template <typename T, typename U> using Map = arx::map<T, U>;
+#endif
 
     enum class Model { PRO, X, MX, OTHER };
 
@@ -117,7 +125,7 @@ namespace dynamixel {
         uint8_t size;
     };
 
-    struct ControlTable { std::map<Reg, RegInfo> ct; };
+    struct ControlTable { Map<Reg, RegInfo> ct; };
 
     template <Model> // Model::OTHER
     class ControlTableOfModel : public ControlTable
@@ -134,7 +142,7 @@ namespace dynamixel {
         ControlTableOfModel()
         {
             Serial.println("OTHER series Control Table");
-            ct = std::map<Reg, RegInfo>
+            ct = Map<Reg, RegInfo>
             {
                 // only for Protocol 1.0
                 // EEPROM
@@ -191,7 +199,7 @@ namespace dynamixel {
         ControlTableOfModel()
         {
             Serial.println("PRO series Control Table");
-            ct = std::map<Reg, RegInfo>
+            ct = Map<Reg, RegInfo>
             {
                 {Reg::MODEL_NUMBER, {0, 2}},
                 {Reg::MODEL_INFORMATION, {2, 4}},
@@ -260,7 +268,7 @@ namespace dynamixel {
         ControlTableOfModel()
         {
             Serial.println("X series Control Table");
-            ct = std::map<Reg, RegInfo>
+            ct = Map<Reg, RegInfo>
             {
                 // EEPROM
                 {Reg::MODEL_NUMBER, {0, 2}},
@@ -339,7 +347,7 @@ namespace dynamixel {
         ControlTableOfModel()
         {
             Serial.println("MX series Control Table");
-            ct = std::map<Reg, RegInfo>
+            ct = Map<Reg, RegInfo>
             {
                 // only for Protocol 2.0
                 // EEPROM

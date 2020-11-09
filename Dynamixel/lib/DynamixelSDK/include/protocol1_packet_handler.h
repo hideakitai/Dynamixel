@@ -24,6 +24,7 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PROTOCOL1PACKETHANDLER_H_
 
 
+#include "types.h"
 #include "packet_handler.h"
 
 namespace dynamixel
@@ -245,7 +246,7 @@ class Protocol1PacketHandler : public PacketHandler
         return result;
     }
 
-    int broadcastPing(std::vector<uint8_t> &id_list)
+    int broadcastPing(Vec<uint8_t> &id_list)
     {
         return COMM_NOT_AVAILABLE;
     }

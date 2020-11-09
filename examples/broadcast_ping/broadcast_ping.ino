@@ -25,7 +25,7 @@ void loop()
 {
     Serial.println("broadcast ping start...");
 
-    auto ids = dxl.ping(); // std::vector<uint8_t>
+    auto ids = dxl.ping(); // vector<uint8_t>
 
     if (!ids.empty())
     {

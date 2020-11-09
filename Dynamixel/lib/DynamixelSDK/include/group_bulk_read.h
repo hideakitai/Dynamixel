@@ -24,11 +24,11 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_GROUPBULKREAD_H_
 
 
-#include <map>
-#include <vector>
+#include "../../../util/ArxTypeTraits/ArxTypeTraits.h"
+#include "../../../util/ArxContainer/ArxContainer.h"
+#include "types.h"
 #include "port_handler_arduino.h"
 #include "packet_handler.h"
-#include <algorithm>
 
 namespace dynamixel
 {
@@ -66,11 +66,11 @@ class GroupBulkRead
   PortHandler    *port_;
   PacketHandler  *ph_;
 
-  std::vector<uint8_t>            id_list_;
-  std::map<uint8_t, uint16_t>     address_list_;  // <id, start_address>
-  std::map<uint8_t, uint16_t>     length_list_;   // <id, data_length>
-  std::map<uint8_t, uint8_t *>    data_list_;     // <id, data>
-  std::map<uint8_t, uint8_t *>    error_list_;    // <id, error>
+  Vec<uint8_t>            id_list_;
+  Map<uint8_t, uint16_t>     address_list_;  // <id, start_address>
+  Map<uint8_t, uint16_t>     length_list_;   // <id, data_length>
+  Map<uint8_t, uint8_t *>    data_list_;     // <id, data>
+  Map<uint8_t, uint8_t *>    error_list_;    // <id, error>
 
   bool            last_result_;
   bool            is_param_changed_;
@@ -144,8 +144,11 @@ class GroupBulkRead
   ////////////////////////////////////////////////////////////////////////////////
   bool    addParam    (uint8_t id, uint16_t start_address, uint16_t data_length)
 {
-  if (std::find(id_list_.begin(), id_list_.end(), id) != id_list_.end())   // id already exist
-    return false;
+  // if (std::find(id_list_.begin(), id_list_.end(), id) != id_list_.end())   // id already exist
+  //   return false;
+    // if id is already exist, return false
+  for (const auto& i : id_list_) // if id is already exist
+    if (i == id) return false;
 
   id_list_.push_back(id);
   length_list_[id]    = data_length;
@@ -163,9 +166,10 @@ class GroupBulkRead
   ////////////////////////////////////////////////////////////////////////////////
   void    removeParam (uint8_t id)
 {
-  std::vector<uint8_t>::iterator it = std::find(id_list_.begin(), id_list_.end(), id);
-  if (it == id_list_.end())    // NOT exist
-    return;
+  // if id is NOT exist, return
+  Vec<uint8_t>::iterator it = id_list_.begin();
+  for (; it != id_list_.end(); ++it) if (*it == id) break;
+  if (it == id_list_.end()) return;
 
   id_list_.erase(it);
   address_list_.erase(id);

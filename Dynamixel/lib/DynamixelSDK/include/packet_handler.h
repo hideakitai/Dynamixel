@@ -24,10 +24,9 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PACKETHANDLER_H_
 
 #include <Arduino.h>
-#include <type_traits>
-
-#include <stdio.h>
-#include <vector>
+#include "../../../util/ArxTypeTraits/ArxTypeTraits.h"
+#include "../../../util/ArxContainer/ArxContainer.h"
+#include "types.h"
 #include "port_handler_arduino.h"
 
 #define BROADCAST_ID        0xFE    // 254
@@ -103,7 +102,7 @@ public:
     virtual const char *getRxPacketError  (uint8_t error) = 0;
 
     virtual int ping            (uint8_t id, uint16_t *model_number, uint8_t *error = 0) = 0;
-    virtual int broadcastPing   (std::vector<uint8_t> &id_list) = 0;
+    virtual int broadcastPing   (Vec<uint8_t> &id_list) = 0;
     virtual int reboot          (uint8_t id, uint8_t *error = 0) = 0;
     virtual int clearMultiTurn  (uint8_t id, uint8_t *error = 0) = 0;
     virtual int factoryReset    (uint8_t id, uint8_t option = 0, uint8_t *error = 0) = 0;

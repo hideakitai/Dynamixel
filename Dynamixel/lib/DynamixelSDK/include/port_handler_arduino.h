@@ -24,6 +24,7 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_ARDUINO_PORTHANDLERARDUINO_H_
 
 #include <Arduino.h>
+#include "types.h"
 
 namespace dynamixel
 {

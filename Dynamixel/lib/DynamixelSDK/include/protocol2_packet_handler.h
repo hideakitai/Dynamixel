@@ -24,6 +24,7 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PROTOCOL2PACKETHANDLER_H_
 
 
+#include "types.h"
 #include "packet_handler.h"
 
 namespace dynamixel
@@ -373,7 +374,7 @@ class Protocol2PacketHandler : public PacketHandler
         return result;
     }
 
-    int broadcastPing(std::vector<uint8_t> &id_list)
+    int broadcastPing(Vec<uint8_t> &id_list)
     {
         const int STATUS_LENGTH     = 14;
         int result                  = COMM_TX_FAIL;
