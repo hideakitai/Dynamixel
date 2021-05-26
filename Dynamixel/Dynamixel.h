@@ -51,6 +51,17 @@ public:
     {
     }
 
+    Dynamixel(uint8_t pin_rx_enable, uint8_t pin_tx_enable, ProtocolVersion ver = ProtocolVersion::V2)
+        : port_handler(new ::dynamixel::PortHandler(pin_rx_enable, pin_tx_enable)), packet_handler((ver == ProtocolVersion::V2) ? (::dynamixel::PacketHandler*)new ::dynamixel::Protocol2PacketHandler() : (::dynamixel::PacketHandler*)new ::dynamixel::Protocol1PacketHandler())
+#if 0
+        , sync_writer(port_handler, packet_handler)
+        , sync_reader(port_handler, packet_handler)
+        , bulk_writer(port_handler, packet_handler)
+        , bulk_reader(port_handler, packet_handler)
+#endif
+    {
+    }
+
     ~Dynamixel() {
         delete port_handler;
         delete packet_handler;
