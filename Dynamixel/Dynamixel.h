@@ -380,17 +380,17 @@ private:
 };
 
 template <>
-void Dynamixel::addModel<Model::PRO>(uint8_t id) {
+inline void Dynamixel::addModel<Model::PRO>(uint8_t id) {
     std::shared_ptr<ControlTable> sp = ControlTableOfModel<Model::PRO>::instance();
     info.emplace(id, Dynamixel::Info{sp, 0, 0, 0});
 }
 template <>
-void Dynamixel::addModel<Model::X>(uint8_t id) {
+inline void Dynamixel::addModel<Model::X>(uint8_t id) {
     std::shared_ptr<ControlTable> sp = ControlTableOfModel<Model::X>::instance();
     info.emplace(id, Dynamixel::Info{sp, 0, 0, 0});
 }
 template <>
-void Dynamixel::addModel<Model::MX>(uint8_t id) {
+inline void Dynamixel::addModel<Model::MX>(uint8_t id) {
     std::shared_ptr<ControlTable> sp = ControlTableOfModel<Model::MX>::instance();
     info.emplace(id, Dynamixel::Info{sp, 0, 0, 0});
 }
