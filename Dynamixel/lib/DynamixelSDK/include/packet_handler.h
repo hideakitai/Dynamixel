@@ -24,8 +24,8 @@
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_PACKETHANDLER_H_
 
 #include <Arduino.h>
-#include "../../../util/ArxTypeTraits/ArxTypeTraits.h"
-#include "../../../util/ArxContainer/ArxContainer.h"
+#include <ArxTypeTraits.h>
+#include <ArxContainer.h>
 #include "types.h"
 #include "port_handler_arduino.h"
 

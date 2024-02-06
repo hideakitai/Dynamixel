@@ -3,7 +3,7 @@
 #define ARDUINO_DYNAMIXEL_IMPL_H
 
 #include "lib/DynamixelSDK/include/dynamixel_sdk.h"
-#include "util/ArxSmartPtr/ArxSmartPtr.h"
+#include <ArxSmartPtr.h>
 #include "DynamixelControlTable.h"
 
 namespace arduino {
