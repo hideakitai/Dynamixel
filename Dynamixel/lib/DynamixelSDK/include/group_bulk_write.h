@@ -23,8 +23,8 @@
 #ifndef DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_GROUPBULKWRITE_H_
 #define DYNAMIXEL_SDK_INCLUDE_DYNAMIXEL_SDK_GROUPBULKWRITE_H_
 
-#include "../../../util/ArxTypeTraits/ArxTypeTraits.h"
-#include "../../../util/ArxContainer/ArxContainer.h"
+#include <ArxTypeTraits.h>
+#include <ArxContainer.h>
 #include "types.h"
 // #include "port_handler.h"
 #include "port_handler_arduino.h"
